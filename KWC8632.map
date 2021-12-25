@@ -1,0 +1,1683 @@
+Open Watcom Linker Version 1.9
+Portions Copyright (c) 1985-2002 Sybase, Inc. All Rights Reserved.
+Created on:       16/05/11 21:42:24
+Executable Image: kernel.exe
+creating a DOS executable
+
+
+                        +------------+
+                        |   Groups   |
+                        +------------+
+
+Group                           Address              Size
+=====                           =======              ====
+
+PGROUP                          0000:0000            00000100
+LGROUP                          0010:0000            0000067e
+DGROUP                          0078:0000            000017fa
+TGROUP                          01f8:0000            0000e330
+I_GROUP                         102b:0000            000023f2
+
+
+
+                        +--------------+
+                        |   Segments   |
+                        +--------------+
+
+Segment                Class          Group          Address         Size
+=======                =====          =====          =======         ====
+
+PSP                    PSP            PGROUP         0000:0000       00000100
+_IRQTEXT               LCODE          LGROUP         0010:0000       00000100
+_LOWTEXT               LCODE          LGROUP         0020:0000       00000109
+_IO_TEXT               LCODE          LGROUP         0030:0009       00000337
+_IO_FIXED_DATA         LCODE          LGROUP         0064:0000       0000013e
+_TEXT                  LCODE          LGROUP         0077:000e       00000000
+_FIXED_DATA            FDATA          DGROUP         0078:0000       00000ab0
+_BSS                   BSS            DGROUP         0123:0000       000002aa
+_DATA                  DATA           DGROUP         014d:000a       00000348
+_DATAEND               DATA           DGROUP         0182:0002       000000c0
+CONST                  DATA           DGROUP         018e:0002       0000035e
+CONST2                 DATA           DGROUP         01c4:0000       00000338
+DCONST                 DCONST         DGROUP         01f7:0008       00000000
+DYN_DATA               DYN_DATA       DGROUP         01f7:0008       00000002
+HMA_TEXT_START         CODE           TGROUP         01f8:0000       00000000
+HMA_TEXT               CODE           TGROUP         01f8:0000       0000a225
+HMA_TEXT_END           CODE           TGROUP         0c1a:0005       00000000
+INIT_TEXT_START        CODE           TGROUP         0c1b:0000       00000000
+INIT_TEXT              CODE           TGROUP         0c1b:0000       00004100
+INIT_TEXT_END          CODE           TGROUP         102b:0000       00000000
+ID_B                   FAR_DATA       I_GROUP        102b:0000       00000000
+I_DATA                 FAR_DATA       I_GROUP        102b:0000       00000522
+ICONST                 FAR_DATA       I_GROUP        107d:0002       00000af0
+ICONST2                FAR_DATA       I_GROUP        112c:0002       00000000
+ID_E                   FAR_DATA       I_GROUP        112c:0002       00000000
+IB_B                   FAR_DATA       I_GROUP        112c:0002       00000000
+I_BSS                  FAR_DATA       I_GROUP        112c:0002       00000fd0
+IB_E                   FAR_DATA       I_GROUP        1229:0002       00000410
+_STACK                 STACK          AUTO           126a:0002       00001000
+
+
+                        +----------------+
+                        |   Memory Map   |
+                        +----------------+
+
+* = unreferenced symbol
++ = symbol only referenced locally
+s = symbol is static
+
+Address        Symbol
+=======        ======
+
+Module: kernel.obj(kernel.asm)
+0000:0002      _LowKernelConfig
+0010:0100      _intvec_table
+0010:0119      _int1e_table
+0010:0127      _TEXT_DGROUP
+0078:0000*     DATASTART
+0078:0000      _DATASTART
+0078:000e      _NetBios
+0078:001a      _NetRetry
+0078:001c      _NetDelay
+0078:001e*     _DskBuffer
+0078:0022      _inputptr
+0078:0024      _first_mcb
+0078:0026*     MARK0026H
+0078:0026      _DPBp
+0078:002a      _sfthead
+0078:002e      _clock
+0078:0032      _syscon
+0078:0036      _maxsecsize
+0078:003c      _CDSp
+0078:0040*     _FCBp
+0078:0044*     _nprotfcb
+0078:0046*     _nblkdev
+0078:0047      _lastdrive
+0078:0048      _nul_dev
+0078:005a      _njoined
+0078:0065      _LoL_nbuffers
+0078:0069      _BootDrive
+0078:006a*     _CPULevel
+0078:006d      _firstbuf
+0078:0079      _bufloc
+0078:007a      _deblock_buf
+0078:0086*     _VgaSet
+0078:0089      _uppermem_link
+0078:008c      _uppermem_root
+0078:0090      _os_setver_minor
+0078:0091      _os_setver_major
+0078:0092      _os_minor
+0078:0093      _os_major
+0078:0095      _version_flags
+0078:0096*     os_release
+0078:0098*     _winInstanced
+0078:009a*     _winStartupInfo
+0078:00b8*     _winPatchTable
+0078:00cc*     _firstsftt
+0078:01fb*     MARK01FBH
+0078:01fb      _local_buffer
+0078:027b      _kb_buf
+0078:02fe      _PrinterEcho
+0078:02ff      _verify_ena
+0078:0300      _scr_pos
+0078:0301      _switchar
+0078:0302      _mem_access_mode
+0078:0303*     sharing_flag
+0078:0304      _net_set_count
+0078:0305      _net_name
+0078:0315*     _CritPatch
+0078:0320      _internal_data
+0078:0320      _ErrorMode
+0078:0321      _InDOS
+0078:0322*     _CritErrDrive
+0078:0323      _CritErrLocus
+0078:0324      _CritErrCode
+0078:0326      _CritErrAction
+0078:0327      _CritErrClass
+0078:0328      _CritErrDev
+0078:032c      _dta
+0078:0330      _cu_psp
+0078:0334      _return_code
+0078:0336      _default_drive
+0078:0337      _break_ena
+0078:033a      _swap_always
+0078:033a      _Int21AX
+0078:033c*     owning_psp
+0078:033e      _MachineId
+0078:034d      _break_flg
+0078:0350*     _DayOfMonth
+0078:0351*     _Month
+0078:0352*     _YearsSince1980
+0078:0356*     _DayOfWeek
+0078:0358*     _dosidle_flag
+0078:035a      _CharReqHdr
+0078:035a      _ClkReqHdr
+0078:037c      _MediaReqHdr
+0078:0392      _IoReqHdr
+0078:03b6      _ClkRecord
+0078:03be      __PriPathBuffer
+0078:043e      __SecPathBuffer
+0078:04be      _sda_tmp_dm
+0078:04d3      _SearchDir
+0078:04f3      _TempCDS
+0078:054b      _DirEntBuffer
+0078:056b      _wAttr
+0078:056d      _SAttr
+0078:056e      _OpenMode
+0078:0572*     _Server_Call
+0078:057c      _tsr
+0078:057e*     term_psp
+0078:0580*     int24_esbp
+0078:0584      _user_r
+0078:0584      int21regs_off
+0078:0586      int21regs_seg
+0078:0588      critical_sp
+0078:058a*     current_ddsc
+0078:059a*     current_device
+0078:059e      _lpCurSft
+0078:05a2      _current_ldt
+0078:05a6      _sda_lpFcb
+0078:05aa      _current_sft_idx
+0078:05ce      _current_filepos
+0078:05f0*     _prev_user_r
+0078:05f0*     prev_int21regs_off
+0078:05f2*     prev_int21regs_seg
+0078:05fd      _ext_open_action
+0078:05ff      _ext_open_attrib
+0078:0601      _ext_open_mode
+0078:0620*     apistk_bottom
+0078:0620      _sda_tmp_dm_ren
+0078:0635*     _SearchDir_ren
+0078:07a0      _error_tos
+0078:0920      _disk_api_tos
+0078:0aa0      _char_api_tos
+0078:0f5a      blk_stk_top
+0078:105a      clk_stk_top
+0078:10a2      _swap_indos
+0078:1162      _p_0_tos
+0078:1162*     _nul_strtgy
+0078:116d*     _nul_intr
+0078:118a      _int22_handler
+0078:118a      _int28_handler
+0078:118a      _int2a_handler
+0078:118a      _empty_handler
+0078:118f      __HMARelocationTableStart
+0078:118f      _int2f_handler
+0078:1197      _int20_handler
+0078:119f      _int21_handler
+0078:11a7      _low_int25_handler
+0078:11af      _low_int26_handler
+0078:11b7      _int27_handler
+0078:11bf      _int0_handler
+0078:11c7      _int6_handler
+0078:11cf      _int19_handler
+0078:11d7      _cpm_entry
+0078:11df      _reloc_call_blk_driver
+0078:11e7      _reloc_call_clk_driver
+0078:11ef      _CharMapSrvc
+0078:11f7      _init_call_p_0
+0078:11ff      __HMARelocationTableEnd
+0078:11ff      _XMSDriverAddress
+0078:1203      _ENABLEA20
+0078:120d      _DISABLEA20
+0078:1215*     forceEnableA20
+0078:1259      _ExecUserDisableA20
+0078:1271      _int24_handler
+0078:17f8      _Dyn
+01f8:0000*     __HMATextAvailable
+01f8:0000      __HMATextStart
+01f8:0031      _DGROUP_
+01f8:0033      __U4M
+01f8:0049      __U4D
+01f8:a225      __HMATextEnd
+01f8:a230      __InitTextStart
+01f8:a2bb*     _INIT_DGROUP
+01f8:e330      __InitTextEnd
+102b:0000*     __INIT_DATA_START
+102b:1012*     __INIT_DATA_END
+102b:1012      __ib_start
+102b:1fe2      __ib_end
+102b:23e2*     init_tos
+102b:23f2      __init_end
+Module: entry.obj(entry.asm)
+01f8:00d5      reloc_call_cpm_entry
+01f8:0134      reloc_call_int0_handler
+01f8:0182      reloc_call_int6_handler
+01f8:0187      reloc_call_int19_handler
+01f8:01a4      reloc_call_int20_handler
+01f8:01a6      reloc_call_int21_handler
+01f8:022b      _int21_iret
+01f8:0244      reloc_call_int27_handler
+01f8:0255      reloc_call_low_int26_handler
+01f8:025d      reloc_call_low_int25_handler
+01f8:029d      _CriticalError
+Module: io.obj(io.asm)
+0010:0209      _ReqPktPtr
+0010:02c6      _IOSuccess
+0010:02d0      _IOExit
+0010:02e4      _IODone
+0010:02e8      _IOCommandError
+0010:02ea      _IOErrCnt
+0010:02f2      _IOErrorExit
+0010:02f6      GetUnitNum
+0010:0540      _con_dev
+0010:0552*     _prn_dev
+0010:0564*     _aux_dev
+0010:05f4*     _clk_dev
+0010:0606      _blk_dev
+Module: console.obj(console.asm)
+0010:012a      _kbdType
+0010:012b*     ConInit
+0010:013b*     ConRead
+0010:0158*     KbdRdChar
+0010:017b      CommonNdRdExit
+0010:01b5*     ConInpFlush
+0010:01d4*     ConWrite
+0010:01e8      _int29_handler
+0010:061a      ConTable
+Module: serial.obj(serial.asm)
+0010:0632      ComTable
+Module: printer.obj(printer.asm)
+0010:0409      uPrtNo
+0010:064a      LptTable
+Module: dsk.obj(C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\dsk.c)
+0078:105e      _LBA_WRITE_VERIFY
+01f8:0390      getddt_
+01f8:039bs     tmark_
+01f8:03acs     tdelay_
+01f8:03e0      _blk_driver
+01f8:0433s     play_dj_
+01f8:04efs     diskchange_
+01f8:0537s     mediachk_
+01f8:058ds     RWzero_
+01f8:05b7s     Getlogdev_
+01f8:0611s     Setlogdev_
+01f8:0642s     blk_Open_
+01f8:0649s     blk_Close_
+01f8:064es     blk_nondr_
+01f8:0652s     blk_Media_
+01f8:065cs     blk_noerr_
+01f8:0660s     getbpb_
+01f8:0783s     bldbpb_
+01f8:07a3s     IoctlQueblk_
+01f8:07dfs     Genblockio_
+01f8:0845s     GenblockioAbs_
+01f8:0891s     Genblkdev_
+01f8:0cb1s     blockio_
+01f8:0d9fs     blk_error_
+01f8:0dafs     dskerr_
+01f8:0e02s     LBA_to_CHS_
+01f8:0e85s     DMA_max_transfer_
+01f8:0ea3s     LBA_Transfer_
+0078:14c0s     _dispatch
+0078:1060s     _template_string
+0078:0ab0      _DiskTransferBuffer
+Module: sysclk.obj(C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\sysclk.c)
+01f8:10eds     ByteToBcd_
+01f8:110ds     DayToBcd_
+01f8:113e      _clk_driver
+0078:108e      _DaysSinceEpoch
+Module: asmsupt.obj(asmsupt.asm)
+01f8:134d      MEMCPY
+01f8:1359      FMEMCPY
+01f8:1366      FMEMSET
+01f8:137c      MEMSET
+01f8:139b      FSTRCPY
+01f8:13a8      STRCPY
+01f8:13bb      FSTRLEN
+01f8:13c5      STRLEN
+01f8:13db      STRCHR
+01f8:13f6      FSTRCHR
+01f8:13fe      FMEMCHR
+01f8:1415      FSTRCMP
+01f8:142f      FMEMCMP
+01f8:143c      MEMCMP
+Module: execrh.obj(execrh.asm)
+01f8:1451      EXECRH
+Module: nlssupt.obj(nlssupt.asm)
+01f8:147a      _reloc_call_CharMapSrvc
+Module: procsupt.obj(procsupt.asm)
+0010:01fa      _got_cbreak
+01f8:1491      _exec_user
+01f8:14b0      _spawn_int23
+01f8:151e      reloc_call_p_0
+Module: dosidle.obj(dosidle.asm)
+01f8:1536*     _DosIdle_hlt
+01f8:1549      _DosIdle_int
+Module: int2f.obj(int2f.asm)
+01f8:1599      reloc_call_int2f_handler
+01f8:1657      SHARE_CHECK
+01f8:165d      SHARE_OPEN_CHECK
+01f8:166d      SHARE_CLOSE_FILE
+01f8:1676      SHARE_ACCESS_CHECK
+01f8:1698      SHARE_LOCK_UNLOCK
+01f8:16bd      NETWORK_REDIRECTOR_MX
+01f8:1751      CALL_NLS
+01f8:1771      FLOPPY_CHANGE
+01f8:a2bd      UMB_GET_LARGEST
+Module: nls_hc.obj(nls_hc.asm)
+0078:14f4      _nlsPackageHardcoded
+0078:151d      _nlsCountryInfoHardcoded
+0078:151e      _nlsCntryInfoHardcoded
+0078:153c*     _hcTablesStart
+0078:153c      _nlsUpcaseHardcoded
+0078:15be      _nlsFUpcaseHardcoded
+0078:1640      _nlsFnameTermHardcoded
+0078:1658      _nlsCollHardcoded
+0078:175a      _nlsDBCSHardcoded
+0078:1764*     _hcTablesEnd
+Module: intr.obj(intr.asm)
+01f8:177e      RES_DOSEXEC
+01f8:178e      RES_READ
+01f8:a2f1      INIT_CALL_INTR
+01f8:a359      INIT_CALL_XMSCALL
+01f8:a363      DETECTXMSDRIVER
+01f8:a37f      KEYCHECK
+01f8:a384      INIT_DOSOPEN
+01f8:a392      CLOSE
+01f8:a399      READ
+01f8:a3a2      DUP2
+01f8:a3aa      LSEEK
+01f8:a3bb      INIT_PSPSET
+01f8:a3c3      INIT_DOSEXEC
+01f8:a3d3      INIT_SETDRIVE
+01f8:a3db      INIT_SWITCHAR
+01f8:a3e0      ALLOCMEM
+01f8:a3ec      SET_DTA
+Module: irqstack.obj(irqstack.asm)
+01f8:a408      _init_stacks
+Module: blockio.obj(C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\blockio.c)
+01f8:179ds     move_buffer_
+01f8:17d1s     searchblock_
+01f8:18a1      DeleteBlockInBufferCache_
+01f8:1910      getblk_
+01f8:1984      setinvld_
+01f8:19ae      dirty_buffers_
+01f8:19e1      flush_buffers_
+01f8:1a18s     flush1_
+01f8:1ad3      flush_
+01f8:1b08      dskxfer_
+01f8:1c94      AllocateHMASpace_
+Module: chario.obj(C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\chario.c)
+01f8:1d07s     CharRequest_
+01f8:1d6c      BinaryCharIO_
+01f8:1da0s     CharIO_
+01f8:1dc9s     CharCmd_
+01f8:1ddes     Busy_
+01f8:1def      con_flush_
+01f8:1df8      sft_to_dev_
+01f8:1e26      StdinBusy_
+01f8:1e74      ndread_
+01f8:1e8e      update_scr_pos_
+01f8:1eb9      cooked_write_
+01f8:1f90      write_char_
+01f8:1fb2      write_char_stdout_
+01f8:2011s     echo_char_
+01f8:203ds     destr_bs_
+01f8:205c      cooked_read_
+01f8:2094s     read_char_sft_dev_
+01f8:2165s     raw_get_char_
+01f8:2176      read_char_
+01f8:21a1s     read_char_check_break_
+01f8:21aa      read_char_stdin_
+01f8:21ff      read_line_
+01f8:2485      read_line_handle_
+Module: systime.obj(C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\systime.c)
+01f8:2519      is_leap_year_monthdays_
+01f8:252a+     DaysFromYearMonthDay_
+01f8:2564+     ExecuteClockDriverRequest_
+01f8:257b      DosGetTime_
+01f8:25a4      DosSetTime_
+01f8:2605      DosGetDate_
+01f8:266b      DosSetDate_
+0078:1764+     _days
+Module: error.obj(C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\error.c)
+01f8:26f0      panic_
+01f8:2706      char_error_
+01f8:272f      block_error_
+Module: break.obj(C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\break.c)
+01f8:2763      ctrl_break_pressed_
+01f8:2774      check_handle_break_
+01f8:27c0      handle_break_
+Module: dosfns.obj(C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\dosfns.c)
+01f8:280c      get_cds_
+01f8:2859      get_cds1_
+01f8:2865      GetDriveDPB_
+01f8:28a7      idx_to_sft__
+01f8:2905      get_sft_idx_
+01f8:292d      get_sft_
+01f8:2930      idx_to_sft_
+01f8:294c      DosRWSft_
+01f8:2b44      SftSeek_
+01f8:2bf0      DosSeek_
+01f8:2c1fs     get_free_hndl_
+01f8:2c51s     get_free_sft_
+01f8:2cba      get_root_
+01f8:2ce6s     ConvertPathNameToFCBName_
+01f8:2cfds     set_fcbname_
+01f8:2d09s     DeviceOpenSft_
+01f8:2dbb      DosOpenSft_
+01f8:2fa9      DosOpen_
+01f8:2ff0      CloneHandle_
+01f8:3019      DosDup_
+01f8:3041      DosForceDup_
+01f8:30b1      DosCloseSft_
+01f8:3182      DosClose_
+01f8:31b6      DosGetFree_
+01f8:3358      DosGetExtFree_
+01f8:3503      DosGetCuDir_
+01f8:354e      DosChangeDir_
+01f8:35d0s     pop_dmp_
+01f8:3628      DosFindFirst_
+01f8:36ea      DosFindNext_
+01f8:375c      DosGetFtime_
+01f8:3786      DosSetFtimeSft_
+01f8:37b8      DosGetFattr_
+01f8:37fb      DosSetFattr_
+01f8:3860      DosSelectDrv_
+01f8:3882      DosDelete_
+01f8:38bc      DosRenameTrue_
+01f8:38fc      DosRename_
+01f8:394e      DosMkRmdir_
+01f8:399c      DosLockUnlock_
+01f8:39fd      IsDevice_
+01f8:3acc      IsShareInstalled_
+01f8:3aef      DosTruename_
+01f8:3b16s     remote_lock_unlock_
+0078:1090+     _share_installed
+Module: fatdir.obj(C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\fatdir.c)
+01f8:3b49      dir_init_fnode_
+01f8:3ba7      dir_open_
+01f8:3c60s     swap_deleted_
+01f8:3c72      dir_read_
+01f8:3d98      dir_write_update_
+01f8:3e8e      dos_findfirst_
+01f8:3edd      dos_findnext_
+01f8:3f73      ConvertName83ToNameSZ_
+01f8:3ff2      ConvertNameSZToName83_
+Module: fatfs.obj(C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\fatfs.c)
+01f8:4030s     time_encode_
+01f8:4056      getdstart_
+01f8:4074+     setdstart_
+01f8:4096      clus2phys_
+01f8:40ce      get_dpb_
+01f8:40f8s     init_direntry_
+01f8:4133      dos_open_
+01f8:424e      fcmp_wild_
+01f8:4273      dos_close_
+01f8:42b6      split_path_
+01f8:42da      dir_exists_
+01f8:42ea      fcbmatch_
+01f8:42fes     find_fname_
+01f8:434f+     remove_lfn_entries_
+01f8:43a1s     merge_file_changes_
+01f8:44ed      dos_merge_file_changes_
+01f8:44f8s     delete_dir_entry_
+01f8:4522      dos_delete_
+01f8:4541      dos_rmdir_
+01f8:45f7      dos_rename_
+01f8:46dcs     wipe_out_clusters_
+01f8:478cs     wipe_out_
+01f8:47b9s     find_free_
+01f8:47e4s     alloc_find_free_
+01f8:4817      dos_getdate_
+01f8:484d      dos_gettime_
+01f8:4862s     find_fat_free_
+01f8:4946s     clear_dir_
+01f8:49c8      dos_mkdir_
+01f8:4b1es     extend_
+01f8:4bc4s     extend_dir_
+01f8:4c0d      map_cluster_
+01f8:4d13s     dos_extend_
+01f8:4d53      rwblock_
+01f8:50c3      dos_free_
+01f8:51ae      dos_cd_
+01f8:51e5      dos_getfattr_
+01f8:51fc      dos_setfattr_
+01f8:5251      dpb16to32_
+01f8:5294      bpb_to_dpb_
+01f8:5493s     rqblockio_
+01f8:5528      media_check_
+01f8:55b5s     sft_to_fnode_
+01f8:5668s     fnode_to_sft_
+01f8:5718s     shrink_file_
+Module: fattab.obj(C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\fattab.c)
+01f8:5815+     clusterMessage_
+01f8:5845+     getFATblock_
+01f8:58db      read_fsinfo_
+01f8:5975      write_fsinfo_
+01f8:5a23      link_fat_
+01f8:5d39      next_cluster_
+01f8:5de0      is_free_cluster_
+Module: fcbfns.obj(C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\fcbfns.c)
+01f8:5df7      FatGetDrvData_
+01f8:5e4e      FcbParseFname_
+01f8:5fa5+     ParseSkipWh_
+01f8:5fc0+     GetNameField_
+01f8:604ds     FcbNextRecord_
+01f8:606as     FcbRec_
+01f8:6094      FcbReadWrite_
+01f8:61b6      FcbGetFileSize_
+01f8:6248      FcbSetRandom_
+01f8:625fs     FcbCalcRec_
+01f8:628b      FcbRandomBlockIO_
+01f8:62dc      FcbRandomIO_
+01f8:6323      FcbOpen_
+01f8:63f3s     ExtFcbToFcb_
+01f8:641ds     CommonFcbInit_
+01f8:6437s     FcbNameInit_
+01f8:647c      FcbDelete_
+01f8:6539      FcbRename_
+01f8:667e      FcbClose_
+01f8:670f      FcbCloseAll_
+01f8:6748      FcbFindFirstNext_
+0078:0cb4s     _Dmatch
+Module: inthndlr.obj(C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\inthndlr.c)
+01f8:687f      _int21_syscall
+01f8:6979+     int21_fat32_
+01f8:6e3a      _int21_service
+01f8:7a7d      _int2526_handler
+01f8:7bb3      _int2F_12_handler
+0078:1798      _os_release
+0078:0ce0      _fnode
+0078:0d54      _firstAvailableBuf
+0078:0d58      _ReturnAnyDosVersionExpected
+0078:0d59      _HaltCpuWhileIdle
+Module: ioctl.obj(C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\ioctl.c)
+01f8:7fe8      DosDevIOctl_
+0078:17das     _cmd
+Module: memmgr.obj(C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\memmgr.c)
+01f8:826fs     joinMCBs_
+01f8:82d2      adjust_far_
+01f8:8307      DosMemAlloc_
+01f8:854a      DosMemLargest_
+01f8:85a7      DosMemFree_
+01f8:85e2      DosMemChange_
+01f8:868a      DosMemCheck_
+01f8:86f6      FreeProcessMem_
+01f8:8751      DosUmbLink_
+Module: task.obj(C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\task.c)
+01f8:87d2      getvec_
+01f8:87ec      setvec_
+01f8:8808      SftGetFsize_
+01f8:8829s     ChildEnv_
+01f8:88ee      new_psp_
+01f8:8930      child_psp_
+01f8:89fas     patchPSP_
+01f8:8b4es     load_transfer_
+01f8:8c0es     ExecMemLargest_
+01f8:8c4as     ExecMemAlloc_
+01f8:8cbc+     DosComLoader_
+01f8:8e83      return_user_
+01f8:8f5d+     DosExeLoader_
+01f8:91dd      DosExec_
+01f8:92b5      _P_0
+Module: newstuff.obj(C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\newstuff.c)
+01f8:93ab      SetJFTSize_
+01f8:9427      DosMkTmp_
+01f8:9515      truename_
+0078:17ecs     __DirChars
+Module: nls.obj(C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\nls.c)
+01f8:9a40s     muxGo_
+01f8:9a59s     muxLoadPkg_
+01f8:9aacs     muxBufGo_
+01f8:9abfs     searchPackage_
+01f8:9b09s     locateSubfct_
+01f8:9b41s     cpyBuf_
+01f8:9b62s     upMMem_
+01f8:9bads     nlsGetData_
+01f8:9c05*     nlsCPchange_
+01f8:9c0bs     nlsSetPackage_
+01f8:9c3ds     nlsLoadPackage_
+01f8:9c47s     DosLoadPackage_
+01f8:9c69s     nlsUpMem_
+01f8:9c89s     nlsFUpMem_
+01f8:9c9fs     xUpMem_
+01f8:9cces     nlsIsDBCS_
+01f8:9d0ds     nlsYesNo_
+01f8:9d5e      DosYesNo_
+01f8:9d90      DosUpMem_
+01f8:9daa      _DosUpChar
+01f8:9dbd      DosUpString_
+01f8:9dd0      DosUpFMem_
+01f8:9e00      DosUpFChar_
+01f8:9e1d      DosUpFString_
+01f8:9e30      DosGetData_
+01f8:9ebe      DosGetCountryInformation_
+01f8:9ed1      DosSetCountry_
+01f8:9edc      DosGetCodepage_
+01f8:9ef8      DosSetCodepage_
+01f8:9f06s     DosSetPackage_
+01f8:9f17      DosGetDBCS_
+01f8:9f28      _syscall_MUX14
+0078:1092      _nlsInfo
+Module: network.obj(C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\network.c)
+01f8:9fd3      get_machine_name_
+01f8:9fe5      set_machine_name_
+01f8:9ffc      network_redirector_fp_
+01f8:a00a      network_redirector_
+Module: prf.obj(C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\prf.c)
+01f8:a016      put_console_
+01f8:a02c      hexd_
+01f8:a0dd      put_unsigned_
+01f8:a123      put_string_
+Module: memdisk.obj(memdisk.asm)
+01f8:a476      _query_memdisk
+Module: main.obj(C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\main.c)
+102b:0000s     _copyright
+01f8:a4d8      _FreeDOSmain
+01f8:a56as     kernel_
+01f8:a5bf+     InitializeAllBPBs_
+01f8:a5f4s     PSPInit_
+01f8:a6b7s     setup_int_vectors_
+01f8:a752s     init_kernel_
+01f8:a824s     FsConfig_
+01f8:a939s     signon_
+01f8:a9f7s     update_dcb_
+01f8:ab38      init_device_
+01f8:ac9fs     InitIO_
+01f8:acc7*     init_fatal_
+01f8:acd4s     InitPrinters_
+01f8:ad14s     InitSerialPorts_
+01f8:ad4es     EmulatedDriveStatus_
+01f8:ad84s     CheckContinueBootFromHarddisk_
+102b:015a      _LoL
+102b:1012      _InitKernelConfig
+Module: config.obj(C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\config.c)
+102b:1026s     _szLine
+102b:1126s     _szBuf
+102b:1226s     _ErrorAlreadyPrinted
+102b:12a6      _master_env
+102b:1326+     _InstallCommands
+102b:183a      _lpTop
+102b:183es     _MenuStruct
+102b:1b90+     _numInstallCmds
+102b:1b92+     _pLineStart
+102b:1b94+     _Menus
+102b:1b96+     _MenuLine
+102b:1b98s     _nCfgLine
+102b:1b9as     _base_seg
+102b:1b9c+     _umb_start
+102b:1b9es     _umb_base_seg
+102b:019a+     _MenuColor
+102b:019cs     _envp
+102b:019e      _Config
+102b:01b1+     _MenuTimeout
+102b:01b3s     _commands
+01f8:ae1ds     WriteMenuLine_
+01f8:aea2s     DeselectLastLine_
+01f8:aec2s     SelectLine_
+01f8:aee1+     findend_
+01f8:af0a      PreConfig_
+01f8:af6f      PreConfig2_
+01f8:b016      PostConfig_
+01f8:b111      configDone_
+01f8:b155s     prev_mcb_
+01f8:b17bs     umb_init_
+01f8:b2c9+     ProcessMemdiskLine_
+01f8:b32d+     GetNextMemdiskLine_
+01f8:b58a      DoConfig_
+01f8:b792s     LookUp_
+01f8:b7b5      GetBiosKey_
+01f8:b81es     SkipLine_
+01f8:b91ds     GetNumArg_
+01f8:b9a5*     GetStringArg_
+01f8:b9a8s     scan_
+01f8:b9f2s     Config_Buffers_
+01f8:ba0cs     CfgBuffersHigh_
+01f8:ba1as     sysScreenMode_
+01f8:ba6ds     sysVersion_
+01f8:bacds     Files_
+01f8:baf6s     FilesHigh_
+01f8:baffs     CfgLastdrive_
+01f8:bb3ds     CfgLastdriveHigh_
+01f8:bb46s     Dosmem_
+01f8:bbd7s     DosData_
+01f8:bbfes     CfgSwitchar_
+01f8:bc11s     CfgSwitches_
+01f8:bcdes     Fcbs_
+01f8:bd23s     CfgKeyBuf_
+01f8:bdd5s     LoadCountryInfo_
+01f8:c0c0s     Country_
+01f8:c138s     Stacks_
+01f8:c19bs     StacksHigh_
+01f8:c1a4s     InitPgmHigh_
+01f8:c1ads     InitPgm_
+01f8:c1d8s     CfgBreak_
+01f8:c200s     Numlock_
+01f8:c22cs     DeviceHigh_
+01f8:c273s     Device_
+01f8:c286s     LoadDevice_
+01f8:c368s     CfgFailure_
+01f8:c3e1      KernelAllocPara_
+01f8:c4ad      KernelAlloc_
+01f8:c4fds     AlignParagraph_
+01f8:c519s     iswh_
+01f8:c530s     skipwh_
+01f8:c5a5s     isnum_
+01f8:c5b4s     toupper_
+01f8:c5bfs     strupr_
+01f8:c5d4s     mcb_init_
+01f8:c5dbs     mcb_init_copy_
+01f8:c5ecs     mumcb_init_
+01f8:c5f5+     strcat_
+01f8:c606s     strcaseequal_
+01f8:c62es     config_init_buffers_
+01f8:c77bs     SetAnyDos_
+01f8:c789s     SetIdleHalt_
+01f8:c7aas     CfgIgnore_
+01f8:c7abs     CfgMenu_
+01f8:c830s     CfgMenuEsc_
+01f8:c850s     DoMenu_
+01f8:ca4bs     CfgMenuDefault_
+01f8:ca90s     ClearScreen_
+01f8:caf9s     CfgMenuColor_
+01f8:cb52s     LoadCountryInfoHardCoded_
+01f8:cc02s     _CmdInstall_
+01f8:cc49s     CmdInstall_
+01f8:cc51s     CmdInstallHigh_
+01f8:cc57s     InstallExec_
+01f8:ccdds     free_
+01f8:ccf9s     set_strategy_
+01f8:cd09      DoInstall_
+01f8:cd71s     CmdSet_
+102b:0311+     _specificCountriesSupported
+102b:1ba0+     _UMB_top
+102b:1ba2+     _ebda_size
+102b:1ba4+     _UmbState
+102b:1ba6+     _nMenuLine
+102b:1ba8      _ram_top
+102b:1baa+     _HMAState
+102b:1bab+     _askThisSingleCommand
+102b:1bac+     _MenuSelected
+102b:1bad+     _DontAskThisSingleCommand
+102b:1bae      _singleStep
+102b:1baf      _SkipAllConfig
+Module: initoem.obj(C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\initoem.c)
+01f8:cde2      init_oem_
+01f8:cdfa      movebda_
+01f8:ce24      ebdasize_
+Module: inithma.obj(C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\inithma.c)
+01f8:ce78s     EnabledA20_
+01f8:ce8c*     EnableHMA_
+01f8:cebf      MoveKernelToHMA_
+01f8:cf3bs     InstallVDISK_
+01f8:cf68      HMAalloc_
+01f8:cfa6      MoveKernel_
+102b:0486+     _CurrentKernelSegment
+102b:1d94      _HMAFree
+102b:1d96+     _HMAclaimed
+102b:1d97+     _DosLoadedInHMA
+Module: dyninit.obj(C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\dyninit.c)
+01f8:d0d8      DynAlloc_
+01f8:d120*     DynFree_
+01f8:d134      DynLast_
+Module: iprf.obj(C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\iprf.c)
+01f8:d147+     init_put_console_
+01f8:d15ds     init_handle_char_
+01f8:d17cs     init_ltob_
+01f8:d1fe      init_printf_
+01f8:d215      init_sprintf_
+01f8:d259s     init_do_printf_
+102b:0488s     _init_charp
+Module: initdisk.obj(C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\initdisk.c)
+01f8:d3e3+     init_readdasd_
+01f8:d413+     init_getdriveparm_
+01f8:d49d+     init_LBA_to_CHS_
+01f8:d50f+     printCHS_
+01f8:d527+     CalculateFATData_
+01f8:d733s     push_ddt_
+01f8:d77a+     DosDefinePartition_
+01f8:d911s     LBA_Get_Drive_Parameters_
+01f8:da8fs     ConvCHSToIntern_
+01f8:dab9+     ConvPartTableEntryToIntern_
+01f8:db29+     is_suspect_
+01f8:db65*     print_warning_suspect_
+01f8:db9e+     ScanForPrimaryPartitions_
+01f8:dda1+     Read1LBASector_
+01f8:de9d+     ProcessDisk_
+01f8:dfe1+     BIOS_nrdrives_
+01f8:e017+     BIOS_drive_reset_
+01f8:e033s     make_ddt_
+01f8:e09b+     ReadAllPartitionTables_
+01f8:e220      dsk_init_
+102b:048a+     _ExtLBAForce
+102b:048c+     _floppy_bpbs
+102b:1d98+     _InitDiskTransferBuffer
+102b:1f98+     _nUnits
+Module: initclk.obj(C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\initclk.c)
+01f8:e236s     InitBcdToByte_
+01f8:e250      Init_clk_driver_
+Module: cpu.obj(cpu.asm)
+01f8:e2f7      _query_cpu
+Module: ..\lib\device.lib(rdpcclk.asm)
+01f8:a136      READPCCLOCK
+Module: ..\lib\device.lib(floppy.asm)
+01f8:a146      FL_RESET
+01f8:a151      FL_DISKCHANGED
+01f8:a169      FL_FORMAT
+01f8:a16d      FL_READ
+01f8:a171      FL_VERIFY
+01f8:a175      FL_WRITE
+01f8:a1a5      FL_LBA_READWRITE
+01f8:a1bf      FL_READKEY
+01f8:a1c4      FL_SETDISKTYPE
+01f8:a1d1      FL_SETMEDIATYPE
+Module: ..\lib\device.lib(wrpcclk.asm)
+01f8:a1fa      WRITEPCCLOCK
+Module: ..\lib\device.lib(wratclk.asm)
+01f8:a203      WRITEATCLOCK
+
+
+                        +---------------------+
+                        |   Module Segments   |
+                        +---------------------+
+
+! = 32-bit segment
+c = initialized communal data
+
+Module          Segment               Class           Address         Size
+======          =======               =====           =======         ====
+
+kernel.asm      PSP                   PSP            0000:0000        00000100
+                _IRQTEXT              LCODE          0010:0000        00000000
+                _LOWTEXT              LCODE          0020:0000        00000029
+                _IO_TEXT              LCODE          0030:0009        00000000
+                _IO_FIXED_DATA        LCODE          0064:0000        00000000
+                _TEXT                 LCODE          0077:000e        00000000
+                _FIXED_DATA           FDATA          0078:0000        00000aac
+                _BSS                  BSS            0123:0000        00000000
+                _DATA                 DATA           014d:000a        00000300
+                _DATAEND              DATA           0182:0002        000000c0
+                CONST                 DATA           018e:0002        00000112
+                CONST2                DATA           01c4:0000        00000000
+                DCONST                DCONST         01f7:0008        00000000
+                DYN_DATA              DYN_DATA       01f7:0008        00000002
+                HMA_TEXT_START        CODE           01f8:0000        00000000
+                HMA_TEXT              CODE           01f8:0000        000000d5
+                HMA_TEXT_END          CODE           0c1a:0005        00000000
+                INIT_TEXT_START       CODE           0c1b:0000        00000000
+                INIT_TEXT             CODE           0c1b:0000        0000008d
+                INIT_TEXT_END         CODE           102b:0000        00000000
+                ID_B                  FAR_DATA       102b:0000        00000000
+                I_DATA                FAR_DATA       102b:0000        00000000
+                ICONST                FAR_DATA       107d:0002        00000000
+                ICONST2               FAR_DATA       112c:0002        00000000
+                ID_E                  FAR_DATA       112c:0002        00000000
+                IB_B                  FAR_DATA       112c:0002        00000000
+                I_BSS                 FAR_DATA       112c:0002        00000000
+                IB_E                  FAR_DATA       1229:0002        00000410
+                _STACK                STACK          126a:0002        00000000
+entry.asm       PSP                   PSP            0000:0100        00000000
+                _IRQTEXT              LCODE          0010:0000        00000000
+                _LOWTEXT              LCODE          0020:0029        00000000
+                _IO_TEXT              LCODE          0030:0009        00000000
+                _IO_FIXED_DATA        LCODE          0064:0000        00000000
+                _TEXT                 LCODE          0077:000e        00000000
+                _FIXED_DATA           FDATA          0078:0ab0        00000000
+                _BSS                  BSS            0123:0000        00000000
+                _DATA                 DATA           014d:030a        00000000
+                _DATAEND              DATA           0182:00c2        00000000
+                CONST                 DATA           018e:0114        00000000
+                CONST2                DATA           01c4:0000        00000000
+                DCONST                DCONST         01f7:0008        00000000
+                DYN_DATA              DYN_DATA       01f7:000a        00000000
+                HMA_TEXT_START        CODE           01f8:0000        00000000
+                HMA_TEXT              CODE           01f8:00d5        000002bb
+                HMA_TEXT_END          CODE           0c1a:0005        00000000
+                INIT_TEXT_START       CODE           0c1b:0000        00000000
+                INIT_TEXT             CODE           0c1b:008d        00000000
+                INIT_TEXT_END         CODE           102b:0000        00000000
+                ID_B                  FAR_DATA       102b:0000        00000000
+                I_DATA                FAR_DATA       102b:0000        00000000
+                ICONST                FAR_DATA       107d:0002        00000000
+                ICONST2               FAR_DATA       112c:0002        00000000
+                ID_E                  FAR_DATA       112c:0002        00000000
+                IB_B                  FAR_DATA       112c:0002        00000000
+                I_BSS                 FAR_DATA       112c:0002        00000000
+                IB_E                  FAR_DATA       1229:0412        00000000
+io.asm          PSP                   PSP            0000:0100        00000000
+                _IRQTEXT              LCODE          0010:0000        00000000
+                _LOWTEXT              LCODE          0020:0029        00000000
+                _IO_TEXT              LCODE          0030:0009        00000156
+                _IO_FIXED_DATA        LCODE          0064:0000        000000d9
+                _TEXT                 LCODE          0077:000e        00000000
+                _FIXED_DATA           FDATA          0078:0ab0        00000000
+                _BSS                  BSS            0123:0000        00000000
+                _DATA                 DATA           014d:030a        00000000
+                _DATAEND              DATA           0182:00c2        00000000
+                CONST                 DATA           018e:0114        00000000
+                CONST2                DATA           01c4:0000        00000000
+                DCONST                DCONST         01f7:0008        00000000
+                DYN_DATA              DYN_DATA       01f7:000a        00000000
+                HMA_TEXT_START        CODE           01f8:0000        00000000
+                HMA_TEXT              CODE           01f8:0390        00000000
+                HMA_TEXT_END          CODE           0c1a:0005        00000000
+                INIT_TEXT_START       CODE           0c1b:0000        00000000
+                INIT_TEXT             CODE           0c1b:008d        00000000
+                INIT_TEXT_END         CODE           102b:0000        00000000
+                ID_B                  FAR_DATA       102b:0000        00000000
+                I_DATA                FAR_DATA       102b:0000        00000000
+                ICONST                FAR_DATA       107d:0002        00000000
+                ICONST2               FAR_DATA       112c:0002        00000000
+                ID_E                  FAR_DATA       112c:0002        00000000
+                IB_B                  FAR_DATA       112c:0002        00000000
+                I_BSS                 FAR_DATA       112c:0002        00000000
+                IB_E                  FAR_DATA       1229:0412        00000000
+console.asm     PSP                   PSP            0000:0100        00000000
+                _IRQTEXT              LCODE          0010:0000        00000000
+                _LOWTEXT              LCODE          0020:0029        000000d1
+                _IO_TEXT              LCODE          0030:015f        00000000
+                _IO_FIXED_DATA        LCODE          0064:00da        00000017
+                _TEXT                 LCODE          0077:000e        00000000
+                _FIXED_DATA           FDATA          0078:0ab0        00000000
+                _BSS                  BSS            0123:0000        00000000
+                _DATA                 DATA           014d:030a        00000000
+                _DATAEND              DATA           0182:00c2        00000000
+                CONST                 DATA           018e:0114        00000000
+                CONST2                DATA           01c4:0000        00000000
+                DCONST                DCONST         01f7:0008        00000000
+                DYN_DATA              DYN_DATA       01f7:000a        00000000
+                HMA_TEXT_START        CODE           01f8:0000        00000000
+                HMA_TEXT              CODE           01f8:0390        00000000
+                HMA_TEXT_END          CODE           0c1a:0005        00000000
+                INIT_TEXT_START       CODE           0c1b:0000        00000000
+                INIT_TEXT             CODE           0c1b:008d        00000000
+                INIT_TEXT_END         CODE           102b:0000        00000000
+                ID_B                  FAR_DATA       102b:0000        00000000
+                I_DATA                FAR_DATA       102b:0000        00000000
+                ICONST                FAR_DATA       107d:0002        00000000
+                ICONST2               FAR_DATA       112c:0002        00000000
+                ID_E                  FAR_DATA       112c:0002        00000000
+                IB_B                  FAR_DATA       112c:0002        00000000
+                I_BSS                 FAR_DATA       112c:0002        00000000
+                IB_E                  FAR_DATA       1229:0412        00000000
+serial.asm      PSP                   PSP            0000:0100        00000000
+                _IRQTEXT              LCODE          0010:0000        00000000
+                _LOWTEXT              LCODE          0020:00fa        00000000
+                _IO_TEXT              LCODE          0030:015f        000000aa
+                _IO_FIXED_DATA        LCODE          0064:00f2        00000017
+                _TEXT                 LCODE          0077:000e        00000000
+                _FIXED_DATA           FDATA          0078:0ab0        00000000
+                _BSS                  BSS            0123:0000        00000000
+                _DATA                 DATA           014d:030a        00000004
+                _DATAEND              DATA           0182:00c2        00000000
+                CONST                 DATA           018e:0114        00000000
+                CONST2                DATA           01c4:0000        00000000
+                DCONST                DCONST         01f7:0008        00000000
+                DYN_DATA              DYN_DATA       01f7:000a        00000000
+                HMA_TEXT_START        CODE           01f8:0000        00000000
+                HMA_TEXT              CODE           01f8:0390        00000000
+                HMA_TEXT_END          CODE           0c1a:0005        00000000
+                INIT_TEXT_START       CODE           0c1b:0000        00000000
+                INIT_TEXT             CODE           0c1b:008d        00000000
+                INIT_TEXT_END         CODE           102b:0000        00000000
+                ID_B                  FAR_DATA       102b:0000        00000000
+                I_DATA                FAR_DATA       102b:0000        00000000
+                ICONST                FAR_DATA       107d:0002        00000000
+                ICONST2               FAR_DATA       112c:0002        00000000
+                ID_E                  FAR_DATA       112c:0002        00000000
+                IB_B                  FAR_DATA       112c:0002        00000000
+                I_BSS                 FAR_DATA       112c:0002        00000000
+                IB_E                  FAR_DATA       1229:0412        00000000
+printer.asm     PSP                   PSP            0000:0100        00000000
+                _IRQTEXT              LCODE          0010:0000        00000000
+                _LOWTEXT              LCODE          0020:00fa        00000000
+                _IO_TEXT              LCODE          0030:0209        000000e4
+                _IO_FIXED_DATA        LCODE          0064:010a        00000033
+                _TEXT                 LCODE          0077:000e        00000000
+                _FIXED_DATA           FDATA          0078:0ab0        00000000
+                _BSS                  BSS            0123:0000        00000000
+                _DATA                 DATA           014d:030e        00000000
+                _DATAEND              DATA           0182:00c2        00000000
+                CONST                 DATA           018e:0114        00000000
+                CONST2                DATA           01c4:0000        00000000
+                DCONST                DCONST         01f7:0008        00000000
+                DYN_DATA              DYN_DATA       01f7:000a        00000000
+                HMA_TEXT_START        CODE           01f8:0000        00000000
+                HMA_TEXT              CODE           01f8:0390        00000000
+                HMA_TEXT_END          CODE           0c1a:0005        00000000
+                INIT_TEXT_START       CODE           0c1b:0000        00000000
+                INIT_TEXT             CODE           0c1b:008d        00000000
+                INIT_TEXT_END         CODE           102b:0000        00000000
+                ID_B                  FAR_DATA       102b:0000        00000000
+                I_DATA                FAR_DATA       102b:0000        00000000
+                ICONST                FAR_DATA       107d:0002        00000000
+                ICONST2               FAR_DATA       112c:0002        00000000
+                ID_E                  FAR_DATA       112c:0002        00000000
+                IB_B                  FAR_DATA       112c:0002        00000000
+                I_BSS                 FAR_DATA       112c:0002        00000000
+                IB_E                  FAR_DATA       1229:0412        00000000
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\dsk.c
+                HMA_TEXT              CODE           01f8:0390        00000d5d
+                CONST                 DATA           018e:0114        0000007e
+                CONST2                DATA           01c4:0000        00000034
+                _DATA                 DATA           014d:030e        0000002f
+                _BSS                  BSS            0123:0000        00000200
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\sysclk.c
+                HMA_TEXT              CODE           01f8:10ed        00000246
+                CONST                 DATA           018e:0192        00000000
+                CONST2                DATA           01c4:0034        00000000
+                _DATA                 DATA           014d:033e        00000002
+asmsupt.asm     PSP                   PSP            0000:0100        00000000
+                _IRQTEXT              LCODE          0010:0000        00000000
+                _LOWTEXT              LCODE          0020:00fa        00000000
+                _IO_TEXT              LCODE          0030:02ed        00000000
+                _IO_FIXED_DATA        LCODE          0064:013e        00000000
+                _TEXT                 LCODE          0077:000e        00000000
+                _FIXED_DATA           FDATA          0078:0ab0        00000000
+                _BSS                  BSS            0123:0200        00000000
+                _DATA                 DATA           014d:0340        00000000
+                _DATAEND              DATA           0182:00c2        00000000
+                CONST                 DATA           018e:0192        00000000
+                CONST2                DATA           01c4:0034        00000000
+                DCONST                DCONST         01f7:0008        00000000
+                DYN_DATA              DYN_DATA       01f7:000a        00000000
+                HMA_TEXT_START        CODE           01f8:0000        00000000
+                HMA_TEXT              CODE           01f8:1333        0000011e
+                HMA_TEXT_END          CODE           0c1a:0005        00000000
+                INIT_TEXT_START       CODE           0c1b:0000        00000000
+                INIT_TEXT             CODE           0c1b:008d        00000000
+                INIT_TEXT_END         CODE           102b:0000        00000000
+                ID_B                  FAR_DATA       102b:0000        00000000
+                I_DATA                FAR_DATA       102b:0000        00000000
+                ICONST                FAR_DATA       107d:0002        00000000
+                ICONST2               FAR_DATA       112c:0002        00000000
+                ID_E                  FAR_DATA       112c:0002        00000000
+                IB_B                  FAR_DATA       112c:0002        00000000
+                I_BSS                 FAR_DATA       112c:0002        00000000
+                IB_E                  FAR_DATA       1229:0412        00000000
+execrh.asm      PSP                   PSP            0000:0100        00000000
+                _IRQTEXT              LCODE          0010:0000        00000000
+                _LOWTEXT              LCODE          0020:00fa        00000000
+                _IO_TEXT              LCODE          0030:02ed        00000000
+                _IO_FIXED_DATA        LCODE          0064:013e        00000000
+                _TEXT                 LCODE          0077:000e        00000000
+                _FIXED_DATA           FDATA          0078:0ab0        00000000
+                _BSS                  BSS            0123:0200        00000000
+                _DATA                 DATA           014d:0340        00000000
+                _DATAEND              DATA           0182:00c2        00000000
+                CONST                 DATA           018e:0192        00000000
+                CONST2                DATA           01c4:0034        00000000
+                DCONST                DCONST         01f7:0008        00000000
+                DYN_DATA              DYN_DATA       01f7:000a        00000000
+                HMA_TEXT_START        CODE           01f8:0000        00000000
+                HMA_TEXT              CODE           01f8:1451        00000029
+                HMA_TEXT_END          CODE           0c1a:0005        00000000
+                INIT_TEXT_START       CODE           0c1b:0000        00000000
+                INIT_TEXT             CODE           0c1b:008d        00000000
+                INIT_TEXT_END         CODE           102b:0000        00000000
+                ID_B                  FAR_DATA       102b:0000        00000000
+                I_DATA                FAR_DATA       102b:0000        00000000
+                ICONST                FAR_DATA       107d:0002        00000000
+                ICONST2               FAR_DATA       112c:0002        00000000
+                ID_E                  FAR_DATA       112c:0002        00000000
+                IB_B                  FAR_DATA       112c:0002        00000000
+                I_BSS                 FAR_DATA       112c:0002        00000000
+                IB_E                  FAR_DATA       1229:0412        00000000
+nlssupt.asm     PSP                   PSP            0000:0100        00000000
+                _IRQTEXT              LCODE          0010:0000        00000000
+                _LOWTEXT              LCODE          0020:00fa        00000000
+                _IO_TEXT              LCODE          0030:02ed        00000000
+                _IO_FIXED_DATA        LCODE          0064:013e        00000000
+                _TEXT                 LCODE          0077:000e        00000000
+                _FIXED_DATA           FDATA          0078:0ab0        00000000
+                _BSS                  BSS            0123:0200        00000000
+                _DATA                 DATA           014d:0340        00000000
+                _DATAEND              DATA           0182:00c2        00000000
+                CONST                 DATA           018e:0192        00000000
+                CONST2                DATA           01c4:0034        00000000
+                DCONST                DCONST         01f7:0008        00000000
+                DYN_DATA              DYN_DATA       01f7:000a        00000000
+                HMA_TEXT_START        CODE           01f8:0000        00000000
+                HMA_TEXT              CODE           01f8:147a        00000017
+                HMA_TEXT_END          CODE           0c1a:0005        00000000
+                INIT_TEXT_START       CODE           0c1b:0000        00000000
+                INIT_TEXT             CODE           0c1b:008d        00000000
+                INIT_TEXT_END         CODE           102b:0000        00000000
+                ID_B                  FAR_DATA       102b:0000        00000000
+                I_DATA                FAR_DATA       102b:0000        00000000
+                ICONST                FAR_DATA       107d:0002        00000000
+                ICONST2               FAR_DATA       112c:0002        00000000
+                ID_E                  FAR_DATA       112c:0002        00000000
+                IB_B                  FAR_DATA       112c:0002        00000000
+                I_BSS                 FAR_DATA       112c:0002        00000000
+                IB_E                  FAR_DATA       1229:0412        00000000
+procsupt.asm    PSP                   PSP            0000:0100        00000000
+                _IRQTEXT              LCODE          0010:0000        00000000
+                _LOWTEXT              LCODE          0020:00fa        0000000f
+                _IO_TEXT              LCODE          0030:02ed        00000000
+                _IO_FIXED_DATA        LCODE          0064:013e        00000000
+                _TEXT                 LCODE          0077:000e        00000000
+                _FIXED_DATA           FDATA          0078:0ab0        00000000
+                _BSS                  BSS            0123:0200        00000000
+                _DATA                 DATA           014d:0340        00000000
+                _DATAEND              DATA           0182:00c2        00000000
+                CONST                 DATA           018e:0192        00000000
+                CONST2                DATA           01c4:0034        00000000
+                DCONST                DCONST         01f7:0008        00000000
+                DYN_DATA              DYN_DATA       01f7:000a        00000000
+                HMA_TEXT_START        CODE           01f8:0000        00000000
+                HMA_TEXT              CODE           01f8:1491        000000a5
+                HMA_TEXT_END          CODE           0c1a:0005        00000000
+                INIT_TEXT_START       CODE           0c1b:0000        00000000
+                INIT_TEXT             CODE           0c1b:008d        00000000
+                INIT_TEXT_END         CODE           102b:0000        00000000
+                ID_B                  FAR_DATA       102b:0000        00000000
+                I_DATA                FAR_DATA       102b:0000        00000000
+                ICONST                FAR_DATA       107d:0002        00000000
+                ICONST2               FAR_DATA       112c:0002        00000000
+                ID_E                  FAR_DATA       112c:0002        00000000
+                IB_B                  FAR_DATA       112c:0002        00000000
+                I_BSS                 FAR_DATA       112c:0002        00000000
+                IB_E                  FAR_DATA       1229:0412        00000000
+dosidle.asm     PSP                   PSP            0000:0100        00000000
+                _IRQTEXT              LCODE          0010:0000        00000000
+                _LOWTEXT              LCODE          0020:0109        00000000
+                _IO_TEXT              LCODE          0030:02ed        00000000
+                _IO_FIXED_DATA        LCODE          0064:013e        00000000
+                _TEXT                 LCODE          0077:000e        00000000
+                _FIXED_DATA           FDATA          0078:0ab0        00000000
+                _BSS                  BSS            0123:0200        00000000
+                _DATA                 DATA           014d:0340        00000000
+                _DATAEND              DATA           0182:00c2        00000000
+                CONST                 DATA           018e:0192        00000000
+                CONST2                DATA           01c4:0034        00000000
+                DCONST                DCONST         01f7:0008        00000000
+                DYN_DATA              DYN_DATA       01f7:000a        00000000
+                HMA_TEXT_START        CODE           01f8:0000        00000000
+                HMA_TEXT              CODE           01f8:1536        00000063
+                HMA_TEXT_END          CODE           0c1a:0005        00000000
+                INIT_TEXT_START       CODE           0c1b:0000        00000000
+                INIT_TEXT             CODE           0c1b:008d        00000000
+                INIT_TEXT_END         CODE           102b:0000        00000000
+                ID_B                  FAR_DATA       102b:0000        00000000
+                I_DATA                FAR_DATA       102b:0000        00000000
+                ICONST                FAR_DATA       107d:0002        00000000
+                ICONST2               FAR_DATA       112c:0002        00000000
+                ID_E                  FAR_DATA       112c:0002        00000000
+                IB_B                  FAR_DATA       112c:0002        00000000
+                I_BSS                 FAR_DATA       112c:0002        00000000
+                IB_E                  FAR_DATA       1229:0412        00000000
+int2f.asm       PSP                   PSP            0000:0100        00000000
+                _IRQTEXT              LCODE          0010:0000        00000000
+                _LOWTEXT              LCODE          0020:0109        00000000
+                _IO_TEXT              LCODE          0030:02ed        00000000
+                _IO_FIXED_DATA        LCODE          0064:013e        00000000
+                _TEXT                 LCODE          0077:000e        00000000
+                _FIXED_DATA           FDATA          0078:0ab0        00000000
+                _BSS                  BSS            0123:0200        00000000
+                _DATA                 DATA           014d:0340        00000000
+                _DATAEND              DATA           0182:00c2        00000000
+                CONST                 DATA           018e:0192        00000000
+                CONST2                DATA           01c4:0034        00000000
+                DCONST                DCONST         01f7:0008        00000000
+                DYN_DATA              DYN_DATA       01f7:000a        00000000
+                HMA_TEXT_START        CODE           01f8:0000        00000000
+                HMA_TEXT              CODE           01f8:1599        000001e5
+                HMA_TEXT_END          CODE           0c1a:0005        00000000
+                INIT_TEXT_START       CODE           0c1b:0000        00000000
+                INIT_TEXT             CODE           0c1b:008d        00000034
+                INIT_TEXT_END         CODE           102b:0000        00000000
+                ID_B                  FAR_DATA       102b:0000        00000000
+                I_DATA                FAR_DATA       102b:0000        00000000
+                ICONST                FAR_DATA       107d:0002        00000000
+                ICONST2               FAR_DATA       112c:0002        00000000
+                ID_E                  FAR_DATA       112c:0002        00000000
+                IB_B                  FAR_DATA       112c:0002        00000000
+                I_BSS                 FAR_DATA       112c:0002        00000000
+                IB_E                  FAR_DATA       1229:0412        00000000
+nls_hc.asm      PSP                   PSP            0000:0100        00000000
+                _IRQTEXT              LCODE          0010:0000        00000000
+                _LOWTEXT              LCODE          0020:0109        00000000
+                _IO_TEXT              LCODE          0030:02ed        00000000
+                _IO_FIXED_DATA        LCODE          0064:013e        00000000
+                _TEXT                 LCODE          0077:000e        00000000
+                _FIXED_DATA           FDATA          0078:0ab0        00000000
+                _BSS                  BSS            0123:0200        00000000
+                _DATA                 DATA           014d:0340        00000000
+                _DATAEND              DATA           0182:00c2        00000000
+                CONST                 DATA           018e:0192        00000000
+                CONST2                DATA           01c4:0034        00000270
+                DCONST                DCONST         01f7:0008        00000000
+                DYN_DATA              DYN_DATA       01f7:000a        00000000
+                HMA_TEXT_START        CODE           01f8:0000        00000000
+                HMA_TEXT              CODE           01f8:177e        00000000
+                HMA_TEXT_END          CODE           0c1a:0005        00000000
+                INIT_TEXT_START       CODE           0c1b:0000        00000000
+                INIT_TEXT             CODE           0c1b:00c1        00000000
+                INIT_TEXT_END         CODE           102b:0000        00000000
+                ID_B                  FAR_DATA       102b:0000        00000000
+                I_DATA                FAR_DATA       102b:0000        00000000
+                ICONST                FAR_DATA       107d:0002        00000000
+                ICONST2               FAR_DATA       112c:0002        00000000
+                ID_E                  FAR_DATA       112c:0002        00000000
+                IB_B                  FAR_DATA       112c:0002        00000000
+                I_BSS                 FAR_DATA       112c:0002        00000000
+                IB_E                  FAR_DATA       1229:0412        00000000
+apisupt.asm     PSP                   PSP            0000:0100        00000000
+                _IRQTEXT              LCODE          0010:0000        00000000
+                _LOWTEXT              LCODE          0020:0109        00000000
+                _IO_TEXT              LCODE          0030:02ed        00000000
+                _IO_FIXED_DATA        LCODE          0064:013e        00000000
+                _TEXT                 LCODE          0077:000e        00000000
+                _FIXED_DATA           FDATA          0078:0ab0        00000000
+                _BSS                  BSS            0123:0200        00000000
+                _DATA                 DATA           014d:0340        00000000
+                _DATAEND              DATA           0182:00c2        00000000
+                CONST                 DATA           018e:0192        00000000
+                CONST2                DATA           01c4:02a4        00000000
+                DCONST                DCONST         01f7:0008        00000000
+                DYN_DATA              DYN_DATA       01f7:000a        00000000
+                HMA_TEXT_START        CODE           01f8:0000        00000000
+                HMA_TEXT              CODE           01f8:177e        00000000
+                HMA_TEXT_END          CODE           0c1a:0005        00000000
+                INIT_TEXT_START       CODE           0c1b:0000        00000000
+                INIT_TEXT             CODE           0c1b:00c1        00000000
+                INIT_TEXT_END         CODE           102b:0000        00000000
+                ID_B                  FAR_DATA       102b:0000        00000000
+                I_DATA                FAR_DATA       102b:0000        00000000
+                ICONST                FAR_DATA       107d:0002        00000000
+                ICONST2               FAR_DATA       112c:0002        00000000
+                ID_E                  FAR_DATA       112c:0002        00000000
+                IB_B                  FAR_DATA       112c:0002        00000000
+                I_BSS                 FAR_DATA       112c:0002        00000000
+                IB_E                  FAR_DATA       1229:0412        00000000
+intr.asm        PSP                   PSP            0000:0100        00000000
+                _IRQTEXT              LCODE          0010:0000        00000000
+                _LOWTEXT              LCODE          0020:0109        00000000
+                _IO_TEXT              LCODE          0030:02ed        00000000
+                _IO_FIXED_DATA        LCODE          0064:013e        00000000
+                _TEXT                 LCODE          0077:000e        00000000
+                _FIXED_DATA           FDATA          0078:0ab0        00000000
+                _BSS                  BSS            0123:0200        00000000
+                _DATA                 DATA           014d:0340        00000000
+                _DATAEND              DATA           0182:00c2        00000000
+                CONST                 DATA           018e:0192        00000000
+                CONST2                DATA           01c4:02a4        00000000
+                DCONST                DCONST         01f7:0008        00000000
+                DYN_DATA              DYN_DATA       01f7:000a        00000000
+                HMA_TEXT_START        CODE           01f8:0000        00000000
+                HMA_TEXT              CODE           01f8:177e        0000001f
+                HMA_TEXT_END          CODE           0c1a:0005        00000000
+                INIT_TEXT_START       CODE           0c1b:0000        00000000
+                INIT_TEXT             CODE           0c1b:00c1        00000108
+                INIT_TEXT_END         CODE           102b:0000        00000000
+                ID_B                  FAR_DATA       102b:0000        00000000
+                I_DATA                FAR_DATA       102b:0000        00000000
+                ICONST                FAR_DATA       107d:0002        00000000
+                ICONST2               FAR_DATA       112c:0002        00000000
+                ID_E                  FAR_DATA       112c:0002        00000000
+                IB_B                  FAR_DATA       112c:0002        00000000
+                I_BSS                 FAR_DATA       112c:0002        00000000
+                IB_E                  FAR_DATA       1229:0412        00000000
+irqstack.asm    PSP                   PSP            0000:0100        00000000
+                _IRQTEXT              LCODE          0010:0000        00000100
+                _LOWTEXT              LCODE          0020:0109        00000000
+                _IO_TEXT              LCODE          0030:02ed        00000053
+                _IO_FIXED_DATA        LCODE          0064:013e        00000000
+                _TEXT                 LCODE          0077:000e        00000000
+                _FIXED_DATA           FDATA          0078:0ab0        00000000
+                _BSS                  BSS            0123:0200        00000000
+                _DATA                 DATA           014d:0340        00000000
+                _DATAEND              DATA           0182:00c2        00000000
+                CONST                 DATA           018e:0192        00000000
+                CONST2                DATA           01c4:02a4        00000000
+                DCONST                DCONST         01f7:0008        00000000
+                DYN_DATA              DYN_DATA       01f7:000a        00000000
+                HMA_TEXT_START        CODE           01f8:0000        00000000
+                HMA_TEXT              CODE           01f8:179d        00000000
+                HMA_TEXT_END          CODE           0c1a:0005        00000000
+                INIT_TEXT_START       CODE           0c1b:0000        00000000
+                INIT_TEXT             CODE           0c1b:01c9        0000007d
+                INIT_TEXT_END         CODE           102b:0000        00000000
+                ID_B                  FAR_DATA       102b:0000        00000000
+                I_DATA                FAR_DATA       102b:0000        00000000
+                ICONST                FAR_DATA       107d:0002        00000000
+                ICONST2               FAR_DATA       112c:0002        00000000
+                ID_E                  FAR_DATA       112c:0002        00000000
+                IB_B                  FAR_DATA       112c:0002        00000000
+                I_BSS                 FAR_DATA       112c:0002        00000000
+                IB_E                  FAR_DATA       1229:0412        00000000
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\blockio.c
+                HMA_TEXT              CODE           01f8:179d        0000056a
+                CONST                 DATA           018e:0192        00000000
+                CONST2                DATA           01c4:02a4        00000000
+                _DATA                 DATA           014d:0340        00000000
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\chario.c
+                HMA_TEXT              CODE           01f8:1d07        00000812
+                CONST                 DATA           018e:0192        00000000
+                CONST2                DATA           01c4:02a4        00000000
+                _DATA                 DATA           014d:0340        00000000
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\systime.c
+                HMA_TEXT              CODE           01f8:2519        000001d7
+                CONST                 DATA           018e:0192        00000000
+                CONST2                DATA           01c4:02a4        00000034
+                _DATA                 DATA           014d:0340        00000000
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\error.c
+                HMA_TEXT              CODE           01f8:26f0        00000073
+                CONST                 DATA           018e:0192        00000018
+                CONST2                DATA           01c4:02d8        00000000
+                _DATA                 DATA           014d:0340        00000000
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\break.c
+                HMA_TEXT              CODE           01f8:2763        000000a9
+                CONST                 DATA           018e:01aa        00000005
+                CONST2                DATA           01c4:02d8        00000000
+                _DATA                 DATA           014d:0340        00000000
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\dosfns.c
+                HMA_TEXT              CODE           01f8:280c        0000133d
+                CONST                 DATA           018e:01b0        00000000
+                CONST2                DATA           01c4:02d8        00000000
+                _DATA                 DATA           014d:0340        00000001
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\fatdir.c
+                HMA_TEXT              CODE           01f8:3b49        000004e7
+                CONST                 DATA           018e:01b0        00000000
+                CONST2                DATA           01c4:02d8        00000000
+                _DATA                 DATA           014d:0342        00000000
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\fatfs.c
+                HMA_TEXT              CODE           01f8:4030        000017e5
+                CONST                 DATA           018e:01b0        00000021
+                CONST2                DATA           01c4:02d8        00000000
+                _DATA                 DATA           014d:0342        00000000
+                _BSS                  BSS            0123:0200        00000004
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\fattab.c
+                HMA_TEXT              CODE           01f8:5815        000005e2
+                CONST                 DATA           018e:01d2        00000045
+                CONST2                DATA           01c4:02d8        00000000
+                _DATA                 DATA           014d:0342        00000000
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\fcbfns.c
+                HMA_TEXT              CODE           01f8:5df7        00000a88
+                CONST                 DATA           018e:0218        00000018
+                CONST2                DATA           01c4:02d8        00000000
+                _DATA                 DATA           014d:0342        00000000
+                _BSS                  BSS            0123:0204        0000002c
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\inthndlr.c
+                HMA_TEXT              CODE           01f8:687f        00001769
+                CONST                 DATA           018e:0230        00000080
+                CONST2                DATA           01c4:02d8        00000042
+                _DATA                 DATA           014d:0342        00000000
+                _BSS                  BSS            0123:0230        0000007a
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\ioctl.c
+                HMA_TEXT              CODE           01f8:7fe8        00000287
+                CONST                 DATA           018e:02b0        00000000
+                CONST2                DATA           01c4:031a        00000012
+                _DATA                 DATA           014d:0342        00000000
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\memmgr.c
+                HMA_TEXT              CODE           01f8:826f        00000563
+                CONST                 DATA           018e:02b0        00000029
+                CONST2                DATA           01c4:032c        00000000
+                _DATA                 DATA           014d:0342        00000000
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\task.c
+                HMA_TEXT              CODE           01f8:87d2        00000bd9
+                CONST                 DATA           018e:02da        0000004a
+                CONST2                DATA           01c4:032c        00000000
+                _DATA                 DATA           014d:0342        00000000
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\newstuff.c
+                HMA_TEXT              CODE           01f8:93ab        00000695
+                CONST                 DATA           018e:0324        00000006
+                CONST2                DATA           01c4:032c        0000000c
+                _DATA                 DATA           014d:0342        00000000
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\nls.c
+                HMA_TEXT              CODE           01f8:9a40        00000593
+                CONST                 DATA           018e:032a        00000024
+                CONST2                DATA           01c4:0338        00000000
+                _DATA                 DATA           014d:0342        00000010
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\network.c
+                HMA_TEXT              CODE           01f8:9fd3        00000043
+                CONST                 DATA           018e:034e        00000000
+                CONST2                DATA           01c4:0338        00000000
+                _DATA                 DATA           014d:0352        00000000
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\prf.c
+                HMA_TEXT              CODE           01f8:a016        00000120
+                CONST                 DATA           018e:034e        00000011
+                CONST2                DATA           01c4:0338        00000000
+                _DATA                 DATA           014d:0352        00000000
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\misc.c
+                HMA_TEXT              CODE           01f8:a136        00000000
+                CONST                 DATA           018e:0360        00000000
+                CONST2                DATA           01c4:0338        00000000
+                _DATA                 DATA           014d:0352        00000000
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\strings.c
+                HMA_TEXT              CODE           01f8:a136        00000000
+                CONST                 DATA           018e:0360        00000000
+                CONST2                DATA           01c4:0338        00000000
+                _DATA                 DATA           014d:0352        00000000
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\syspack.c
+                HMA_TEXT              CODE           01f8:a136        00000000
+                CONST                 DATA           018e:0360        00000000
+                CONST2                DATA           01c4:0338        00000000
+                _DATA                 DATA           014d:0352        00000000
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\lfnapi.c
+                HMA_TEXT              CODE           01f8:a136        00000000
+                CONST                 DATA           018e:0360        00000000
+                CONST2                DATA           01c4:0338        00000000
+                _DATA                 DATA           014d:0352        00000000
+memdisk.asm     PSP                   PSP            0000:0100        00000000
+                _IRQTEXT              LCODE          0010:0100        00000000
+                _LOWTEXT              LCODE          0020:0109        00000000
+                _IO_TEXT              LCODE          0030:0340        00000000
+                _IO_FIXED_DATA        LCODE          0064:013e        00000000
+                _TEXT                 LCODE          0077:000e        00000000
+                _FIXED_DATA           FDATA          0078:0ab0        00000000
+                _BSS                  BSS            0123:02aa        00000000
+                _DATA                 DATA           014d:0352        00000000
+                _DATAEND              DATA           0182:00c2        00000000
+                CONST                 DATA           018e:0360        00000000
+                CONST2                DATA           01c4:0338        00000000
+                DCONST                DCONST         01f7:0008        00000000
+                DYN_DATA              DYN_DATA       01f7:000a        00000000
+                HMA_TEXT_START        CODE           01f8:0000        00000000
+                HMA_TEXT              CODE           01f8:a136        00000000
+                HMA_TEXT_END          CODE           0c1a:0005        00000000
+                INIT_TEXT_START       CODE           0c1b:0000        00000000
+                INIT_TEXT             CODE           0c1b:0246        00000062
+                INIT_TEXT_END         CODE           102b:0000        00000000
+                ID_B                  FAR_DATA       102b:0000        00000000
+                I_DATA                FAR_DATA       102b:0000        00000000
+                ICONST                FAR_DATA       107d:0002        00000000
+                ICONST2               FAR_DATA       112c:0002        00000000
+                ID_E                  FAR_DATA       112c:0002        00000000
+                IB_B                  FAR_DATA       112c:0002        00000000
+                I_BSS                 FAR_DATA       112c:0002        00000000
+                IB_E                  FAR_DATA       1229:0412        00000000
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\main.c
+                INIT_TEXT             CODE           0c1b:02a8        00000945
+                ICONST                FAR_DATA       107d:0002        0000011a
+                ICONST2               FAR_DATA       112c:0002        00000000
+                I_DATA                FAR_DATA       102b:0000        0000019a
+                I_BSS                 FAR_DATA       112c:0002        00000014
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\config.c
+                INIT_TEXT             CODE           0c1b:0bed        00001fc5
+                ICONST                FAR_DATA       107d:011c        0000054e
+                ICONST2               FAR_DATA       112c:0002        00000000
+                I_DATA                FAR_DATA       102b:019a        000002d6
+                I_BSS                 FAR_DATA       112c:0016        00000d6e
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\initoem.c
+                INIT_TEXT             CODE           0c1b:2bb2        00000096
+                ICONST                FAR_DATA       107d:066a        00000000
+                ICONST2               FAR_DATA       112c:0002        00000000
+                I_DATA                FAR_DATA       102b:0470        00000000
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\inithma.c
+                INIT_TEXT             CODE           0c1b:2c48        00000260
+                ICONST                FAR_DATA       107d:066a        000000ad
+                ICONST2               FAR_DATA       112c:0002        00000000
+                I_DATA                FAR_DATA       102b:0470        00000018
+                I_BSS                 FAR_DATA       112c:0d84        00000004
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\dyninit.c
+                INIT_TEXT             CODE           0c1b:2ea8        0000006f
+                ICONST                FAR_DATA       107d:0718        0000000f
+                ICONST2               FAR_DATA       112c:0002        00000000
+                I_DATA                FAR_DATA       102b:0488        00000000
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\iprf.c
+                INIT_TEXT             CODE           0c1b:2f17        0000029c
+                ICONST                FAR_DATA       107d:0728        0000001b
+                ICONST2               FAR_DATA       112c:0002        00000000
+                I_DATA                FAR_DATA       102b:0488        00000002
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\initdisk.c
+                INIT_TEXT             CODE           0c1b:31b3        00000e53
+                ICONST                FAR_DATA       107d:0744        000003ae
+                ICONST2               FAR_DATA       112c:0002        00000000
+                I_DATA                FAR_DATA       102b:048a        00000067
+                I_BSS                 FAR_DATA       112c:0d88        0000024a
+C:\fd\freedos.svn\freedos-svn.sf\kernel\SOURCE\ke2042\kernel\initclk.c
+                INIT_TEXT             CODE           0c1b:4006        000000c1
+                ICONST                FAR_DATA       107d:0af2        00000000
+                ICONST2               FAR_DATA       112c:0002        00000000
+                I_DATA                FAR_DATA       102b:04f2        00000030
+cpu.asm         PSP                   PSP            0000:0100        00000000
+                _IRQTEXT              LCODE          0010:0100        00000000
+                _LOWTEXT              LCODE          0020:0109        00000000
+                _IO_TEXT              LCODE          0030:0340        00000000
+                _IO_FIXED_DATA        LCODE          0064:013e        00000000
+                _TEXT                 LCODE          0077:000e        00000000
+                _FIXED_DATA           FDATA          0078:0ab0        00000000
+                _BSS                  BSS            0123:02aa        00000000
+                _DATA                 DATA           014d:0352        00000000
+                _DATAEND              DATA           0182:00c2        00000000
+                CONST                 DATA           018e:0360        00000000
+                CONST2                DATA           01c4:0338        00000000
+                DCONST                DCONST         01f7:0008        00000000
+                DYN_DATA              DYN_DATA       01f7:000a        00000000
+                HMA_TEXT_START        CODE           01f8:0000        00000000
+                HMA_TEXT              CODE           01f8:a136        00000000
+                HMA_TEXT_END          CODE           0c1a:0005        00000000
+                INIT_TEXT_START       CODE           0c1b:0000        00000000
+                INIT_TEXT             CODE           0c1b:40c7        00000039
+                INIT_TEXT_END         CODE           102b:0000        00000000
+                ID_B                  FAR_DATA       102b:0000        00000000
+                I_DATA                FAR_DATA       102b:0522        00000000
+                ICONST                FAR_DATA       107d:0af2        00000000
+                ICONST2               FAR_DATA       112c:0002        00000000
+                ID_E                  FAR_DATA       112c:0002        00000000
+                IB_B                  FAR_DATA       112c:0002        00000000
+                I_BSS                 FAR_DATA       112c:0fd2        00000000
+                IB_E                  FAR_DATA       1229:0412        00000000
+rdpcclk.asm     PSP                   PSP            0000:0100        00000000
+                _IRQTEXT              LCODE          0010:0100        00000000
+                _LOWTEXT              LCODE          0020:0109        00000000
+                _IO_TEXT              LCODE          0030:0340        00000000
+                _IO_FIXED_DATA        LCODE          0064:013e        00000000
+                _TEXT                 LCODE          0077:000e        00000000
+                _FIXED_DATA           FDATA          0078:0ab0        00000000
+                _BSS                  BSS            0123:02aa        00000000
+                _DATA                 DATA           014d:0352        00000000
+                _DATAEND              DATA           0182:00c2        00000000
+                CONST                 DATA           018e:0360        00000000
+                CONST2                DATA           01c4:0338        00000000
+                DCONST                DCONST         01f7:0008        00000000
+                DYN_DATA              DYN_DATA       01f7:000a        00000000
+                HMA_TEXT_START        CODE           01f8:0000        00000000
+                HMA_TEXT              CODE           01f8:a136        00000010
+                HMA_TEXT_END          CODE           0c1a:0005        00000000
+                INIT_TEXT_START       CODE           0c1b:0000        00000000
+                INIT_TEXT             CODE           0c1b:4100        00000000
+                INIT_TEXT_END         CODE           102b:0000        00000000
+                ID_B                  FAR_DATA       102b:0000        00000000
+                I_DATA                FAR_DATA       102b:0522        00000000
+                ICONST                FAR_DATA       107d:0af2        00000000
+                ICONST2               FAR_DATA       112c:0002        00000000
+                ID_E                  FAR_DATA       112c:0002        00000000
+                IB_B                  FAR_DATA       112c:0002        00000000
+                I_BSS                 FAR_DATA       112c:0fd2        00000000
+                IB_E                  FAR_DATA       1229:0412        00000000
+floppy.asm      PSP                   PSP            0000:0100        00000000
+                _IRQTEXT              LCODE          0010:0100        00000000
+                _LOWTEXT              LCODE          0020:0109        00000000
+                _IO_TEXT              LCODE          0030:0340        00000000
+                _IO_FIXED_DATA        LCODE          0064:013e        00000000
+                _TEXT                 LCODE          0077:000e        00000000
+                _FIXED_DATA           FDATA          0078:0ab0        00000000
+                _BSS                  BSS            0123:02aa        00000000
+                _DATA                 DATA           014d:0352        00000000
+                _DATAEND              DATA           0182:00c2        00000000
+                CONST                 DATA           018e:0360        00000000
+                CONST2                DATA           01c4:0338        00000000
+                DCONST                DCONST         01f7:0008        00000000
+                DYN_DATA              DYN_DATA       01f7:000a        00000000
+                HMA_TEXT_START        CODE           01f8:0000        00000000
+                HMA_TEXT              CODE           01f8:a146        000000b4
+                HMA_TEXT_END          CODE           0c1a:0005        00000000
+                INIT_TEXT_START       CODE           0c1b:0000        00000000
+                INIT_TEXT             CODE           0c1b:4100        00000000
+                INIT_TEXT_END         CODE           102b:0000        00000000
+                ID_B                  FAR_DATA       102b:0000        00000000
+                I_DATA                FAR_DATA       102b:0522        00000000
+                ICONST                FAR_DATA       107d:0af2        00000000
+                ICONST2               FAR_DATA       112c:0002        00000000
+                ID_E                  FAR_DATA       112c:0002        00000000
+                IB_B                  FAR_DATA       112c:0002        00000000
+                I_BSS                 FAR_DATA       112c:0fd2        00000000
+                IB_E                  FAR_DATA       1229:0412        00000000
+wrpcclk.asm     PSP                   PSP            0000:0100        00000000
+                _IRQTEXT              LCODE          0010:0100        00000000
+                _LOWTEXT              LCODE          0020:0109        00000000
+                _IO_TEXT              LCODE          0030:0340        00000000
+                _IO_FIXED_DATA        LCODE          0064:013e        00000000
+                _TEXT                 LCODE          0077:000e        00000000
+                _FIXED_DATA           FDATA          0078:0ab0        00000000
+                _BSS                  BSS            0123:02aa        00000000
+                _DATA                 DATA           014d:0352        00000000
+                _DATAEND              DATA           0182:00c2        00000000
+                CONST                 DATA           018e:0360        00000000
+                CONST2                DATA           01c4:0338        00000000
+                DCONST                DCONST         01f7:0008        00000000
+                DYN_DATA              DYN_DATA       01f7:000a        00000000
+                HMA_TEXT_START        CODE           01f8:0000        00000000
+                HMA_TEXT              CODE           01f8:a1fa        00000009
+                HMA_TEXT_END          CODE           0c1a:0005        00000000
+                INIT_TEXT_START       CODE           0c1b:0000        00000000
+                INIT_TEXT             CODE           0c1b:4100        00000000
+                INIT_TEXT_END         CODE           102b:0000        00000000
+                ID_B                  FAR_DATA       102b:0000        00000000
+                I_DATA                FAR_DATA       102b:0522        00000000
+                ICONST                FAR_DATA       107d:0af2        00000000
+                ICONST2               FAR_DATA       112c:0002        00000000
+                ID_E                  FAR_DATA       112c:0002        00000000
+                IB_B                  FAR_DATA       112c:0002        00000000
+                I_BSS                 FAR_DATA       112c:0fd2        00000000
+                IB_E                  FAR_DATA       1229:0412        00000000
+wratclk.asm     PSP                   PSP            0000:0100        00000000
+                _IRQTEXT              LCODE          0010:0100        00000000
+                _LOWTEXT              LCODE          0020:0109        00000000
+                _IO_TEXT              LCODE          0030:0340        00000000
+                _IO_FIXED_DATA        LCODE          0064:013e        00000000
+                _TEXT                 LCODE          0077:000e        00000000
+                _FIXED_DATA           FDATA          0078:0ab0        00000000
+                _BSS                  BSS            0123:02aa        00000000
+                _DATA                 DATA           014d:0352        00000000
+                _DATAEND              DATA           0182:00c2        00000000
+                CONST                 DATA           018e:0360        00000000
+                CONST2                DATA           01c4:0338        00000000
+                DCONST                DCONST         01f7:0008        00000000
+                DYN_DATA              DYN_DATA       01f7:000a        00000000
+                HMA_TEXT_START        CODE           01f8:0000        00000000
+                HMA_TEXT              CODE           01f8:a203        00000022
+                HMA_TEXT_END          CODE           0c1a:0005        00000000
+                INIT_TEXT_START       CODE           0c1b:0000        00000000
+                INIT_TEXT             CODE           0c1b:4100        00000000
+                INIT_TEXT_END         CODE           102b:0000        00000000
+                ID_B                  FAR_DATA       102b:0000        00000000
+                I_DATA                FAR_DATA       102b:0522        00000000
+                ICONST                FAR_DATA       107d:0af2        00000000
+                ICONST2               FAR_DATA       112c:0002        00000000
+                ID_E                  FAR_DATA       112c:0002        00000000
+                IB_B                  FAR_DATA       112c:0002        00000000
+                I_BSS                 FAR_DATA       112c:0fd2        00000000
+                IB_E                  FAR_DATA       1229:0412        00000000
+
+
+                        +--------------------+
+                        |   Libraries Used   |
+                        +--------------------+
+
+..\lib\device.lib
+
+
+                        +-----------------------+
+                        |   Linker Statistics   |
+                        +-----------------------+
+
+Stack size:  1000 (4096.)
+Memory size:  000136a2 (79522.)
+Entry point address: 0000:0000
+Link time: 00:00.94
