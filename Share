@@ -1,0 +1,97 @@
+//电脑密码制作
+#include <stdio.h>
+void InputPass(char pw[])//获取用户输入的密码
+{
+char ch;//用户输入的密码字符
+char* pold = pw;//保存密码数组的首地址，用于循环内的比较
+while((ch=getch())!=’\r’)//ASCII码值为13（’\r’）回车
+{
+if(ch==’\b’&& pw > pold)//如果按下的是退格键并且字符数组中有数据，我们才进行退格操作
+{
+printf("\b \b");//12345
+–pw;
+continue;//跳过本次循环
+}
+printf("*");
+*pw=ch;//把获取的字符赋给pw指针所指向的那块存储区域
+++pw;//让指针指向下一块存储区域
+}
+*pw=’\0’;//加上字符串的结尾标记
+}
+int main()
+{
+char my_pw[15];//用来保存密码 是用来存储一堆相同数据类型的数据
+printf(“请输入密码:\n”);
+InputPass(my_pw);
+printf("\n用户输入的密码是：%s\n",my_pw);
+
+return 0;
+}
+//日历表
+import java.awt.Button;
+import java.awt.Color;
+import java.awt.Frame;
+import java.awt.GridLayout;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Scanner;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.border.Border;
+public class Test {
+public static void main(String[] srg) {
+System.out.println(“请输入:yyyy-MM-dd”);//
+Calendar c = new GregorianCalendar();
+Scanner s = new Scanner(System.in);
+String str =s.nextLine();
+SimpleDateFormat sdf = new SimpleDateFormat(“yyyy-MM-dd”);
+try {
+Date d1 =sdf.parse(str);
+c.setTime(d1);
+int days = c.get(Calendar.DAY_OF_MONTH);
+int day = c.getActualMaximum(Calendar.DAY_OF_MONTH);
+c.set(Calendar.DATE,1);
+int daynum =c.get(Calendar.DAY_OF_WEEK);
+int daynums = daynum ==1?6:(daynum-2);
+c.set(Calendar.DATE, day);
+int dayss = c.get(Calendar.DAY_OF_WEEK);
+
+System.out.println(“一\t二\t三\t四\t五\t六\t日”);
+c.add(Calendar.DAY_OF_MONTH, -1);
+for (int i2 = 1; i2 <= daynums ; i2++) {
+System.out.print(c.get(Calendar.DATE)-daynums+i2+2+"\t");
+}
+
+for (int i1 = 1; i1 <=day; i1++) {
+daynums++;
+if (i1 != days) {
+System.out.print(i1+"\t");
+} else {
+System.out.print(i1+"\t");
+}
+if (daynums % 7 ==0) {
+System.out.println();
+}
+}
+
+c.add(Calendar.DAY_OF_MONTH,2);
+int dayssum = dayss ==1?0:8-dayss;
+for(int k =1; k <= dayssum;k++){
+System.out.print(k+"\t");
+}
+
+}catch (ParseException e) {
+System.out.println(“输入日期有误”);
+
+}
+}
+}
